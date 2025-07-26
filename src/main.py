@@ -25,5 +25,41 @@ def draw_table():
             print('|', end='') if j == 2 else ""
         print('')
 
+def handle_edge_case(next_move):
+    # Edges Cases: Null string, just x or y and just x or y but with space.
+        if (len(next_move) < 2):
+            print("Invalid position(s). Please try again!")
+            return 1
+        if (' ' not in next_move):
+            print("Invalid separator. Please use space as separator")
+            return 1
+
+        x, y = next_move.split()
+        
+        # Edges about type: Float or char, ...
+        try:
+            x = int(x)
+            y = int(y)
+        except ValueError:
+            print("Only integer allowed! Retry...")
+            return 1
+        if ((x < 0 or x > 8) or (y < 0 or y > 8)):
+            print("Invalid position(s). Please try again!")
+            return 1
+        return x,y
+
+def main():
+    while True:
+        next_move = input("Please enter your next move (x,y): ")
+        print(next_move)
+        
+        if handle_edge_case(next_move) == 1:
+            continue
+        else:
+            x, y = handle_edge_case(next_move)
+            print(f"x:{x} y:{y}")
+        
+        draw_table()
+
 if __name__ == "__main__":
-    draw_table()
+    main()
