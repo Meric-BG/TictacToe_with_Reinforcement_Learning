@@ -4,23 +4,18 @@ import numpy as np
     Players, game state"""
 
 class TicTacToe():
-    def __init__(self, p1, p2):
+    def __init__(self):
         self.nb_rows = 3
         self.nb_cols = 3
         self.table = [[' ' for _ in range(self.nb_cols)] for _ in range(self.nb_rows)] 
-        self.p1 = p1
-        self.p2 = p2
+        self.p1_symbol = 'O'
+        self.p2_symbol = 'X'
         self.Game_over = False
 
-def draw_table():
-    nb_rows = 3
-    nb_cols = 3
- 
-    table = [[' ' for _ in range(nb_cols)] for _ in range(nb_rows)] 
-   
-    for i in range(nb_rows):
-        for j in range(nb_cols):
-            print(f"|{table[i][j]}", end='')
+def draw_table(Game):
+    for i in range(Game.nb_rows):
+        for j in range(Game.nb_cols):
+            print(f"|{Game.table[i][j]}", end='')
             # C must also have thing like that
             print('|', end='') if j == 2 else ""
         print('')
@@ -49,17 +44,22 @@ def handle_edge_case(next_move):
         return x,y
 
 def main():
+    Game = TicTacToe()
+    counter = 0
     while True:
         next_move = input("Please enter your next move (x,y): ")
         print(next_move)
         
+        #Edges cases
         if handle_edge_case(next_move) == 1:
             continue
         else:
             x, y = handle_edge_case(next_move)
-            print(f"x:{x} y:{y}")
-        
-        draw_table()
+            # Filling the game with  the right symbol
+            Game.table[x][y] = Game.p1_symbol if counter % 2 == 0 else Game.p2_symbol
+        counter =+ 1
+
+        draw_table(Game)
 
 if __name__ == "__main__":
     main()
