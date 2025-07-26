@@ -109,6 +109,9 @@ def main():
             x, y = handle_edge_case(next_move)
             # Filling the game with  the right symbol
             print(f"cou:{counter}")
+            if Game.table[x][y] != ' ':
+                print("Position already taken. Please try another position!")
+                continue
             Game.table[x][y] = Game.p1_symbol if counter % 2 == 0 else Game.p2_symbol
             draw_table(Game)
             if victory_checkor(Game) != 0:
