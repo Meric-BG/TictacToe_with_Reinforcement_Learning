@@ -17,7 +17,7 @@ def draw_table(Game):
     for i in range(Game.nb_rows):
         for j in range(Game.nb_cols):
             print(f"|{Game.table[i][j]}", end='')
-            # C must also have thing like that
+            # C must also have things like that
             print('|', end='') if j == 2 else ""
         print('')
 
@@ -91,7 +91,8 @@ def victory_checkor(Game):
     if s2 == 3:
         print("Player 2 won!")
         return 2
-
+    # Nothing happens 
+    return 0
 
 def main():
     Game = TicTacToe()
@@ -110,7 +111,8 @@ def main():
             print(f"cou:{counter}")
             Game.table[x][y] = Game.p1_symbol if counter % 2 == 0 else Game.p2_symbol
             draw_table(Game)
-            victory_checkor(Game)
+            if victory_checkor(Game) != 0:
+                break
         counter += 1
 
 if __name__ == "__main__":
