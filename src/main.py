@@ -52,9 +52,9 @@ def victory_checkor(Game):
     for i in range(Game.nb_rows):
         for j in range(Game.nb_cols):
             if Game.table[i][j] == Game.p1_symbol:
-               s1 =+ 1
+               s1 += 1
             if Game.table[i][j] == Game.p2_symbol:
-               s2 =+ 1
+               s2 += 1
         if s1 == 3:
             print("Player 1 won!")
             return 1
@@ -67,9 +67,9 @@ def victory_checkor(Game):
     for j in range(Game.nb_cols):
         for i in range(Game.nb_rows):
             if Game.table[i][j] == Game.p1_symbol:
-               s1 =+ 1
+               s1 += 1
             if Game.table[i][j] == Game.p2_symbol:
-               s2 =+ 1
+               s2 += 1
         if s1 == 3:
             print("Player 1 won!")
             return 1
@@ -82,9 +82,9 @@ def victory_checkor(Game):
     for i in range(Game.nb_rows):
         #--Upper Left to Down Right's logic------Down Left to Upper Right's logic-------
         if Game.table[i][i] == Game.p1_symbol or Game.table[2 - i][i] == Game.p1_symbol:
-           s1 =+ 1
+           s1 += 1
         if Game.table[i][i] == Game.p2_symbol or Game.table[2 - i][i] == Game.p2_symbol:
-           s2 =+ 1
+           s2 += 1
     if s1 == 3:
         print("Player 1 won!")
         return 1
@@ -102,6 +102,7 @@ def main():
         
         #Edges cases
         if handle_edge_case(next_move) == 1:
+            print("Error")
             continue
         else:
             x, y = handle_edge_case(next_move)
@@ -110,7 +111,7 @@ def main():
             Game.table[x][y] = Game.p1_symbol if counter % 2 == 0 else Game.p2_symbol
             draw_table(Game)
             victory_checkor(Game)
-        counter =+ 1
+        counter += 1
 
 if __name__ == "__main__":
     main()
